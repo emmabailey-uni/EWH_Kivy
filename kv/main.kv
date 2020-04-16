@@ -1,0 +1,45 @@
+#:include kv/initial_window.kv
+#:include kv/main_window.kv
+#:include kv/second_window.kv
+#:include kv/scanRFID_window.kv
+#:include kv/profile_window.kv
+#:include kv/donate_equipment.kv
+#:include kv/view_donations.kv
+#:include kv/new_donation.kv
+
+GridLayout:
+    cols:1
+
+    WindowManager:
+        id: window_manager
+        InitialWindow:
+            name:"initial_window"
+            id:initial_window
+
+        MainWindow:
+            name:"main_window"
+            id:main_window
+
+        SecondWindow:
+            name:"second_window"
+            id:second_window
+
+        ScanRFIDWindow:
+            name:"scanRFID_window"
+            id:scanRFID_window
+
+        ProfileWindow:
+            name:"profile_window"
+            id:profile_window
+
+        DonateEquipment:
+            name:"donate_equipment"
+            id:donate_equipment
+
+        ViewDonations:
+            name:"view_donations"
+            id:view_donations
+
+        NewDonation:
+            name:"new_donation"
+            id:new_donation

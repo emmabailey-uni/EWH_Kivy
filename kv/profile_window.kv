@@ -1,0 +1,80 @@
+<ProfileWindow>:
+
+    hname:hname
+    location:location
+    language:language
+    contactinfo:contactinfo
+    nostaff:nostaff
+    capacity:capacity
+    status:status
+
+    GridLayout:
+        cols:1
+
+
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Hospital Name: "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: hname
+                multiline: False
+
+            Label:
+                text: "Location: "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: location
+                multiline: False
+
+            Label:
+                text:"Language: "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: language
+                multiline: False
+
+            Label:
+                text:"Contact Information: "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: contactinfo
+                multiline: False
+
+            Label:
+                text:"Number of Staff: "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: nostaff
+                multiline: False
+
+            Label:
+                text: "Capacity: "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: capacity
+                multiline: False
+
+            Label:
+                text: "Status - Donor/Recipient: "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: status
+                multiline: False
+
+        Button:
+            text: "Submit "
+            background_color: [1, 0, 1, .6]
+            on_press: root.btn()
+            on_release:
+                app.root.current = "second"
+                app.change_screen("second_window","right")

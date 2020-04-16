@@ -1,0 +1,20 @@
+<InitialWindow>:
+
+    GridLayout:
+        cols:1
+
+        Label:
+            text: "Welcome to the UCD Tagging System"
+            font_size: 40
+            multiline: True
+            italic: True
+            color: 1, 0, 1, 1
+
+        Button:
+            text: "Click here to log in"
+            background_color: [1, 0, 1, 0.55]
+            pos_hint: {"x":0.8, "bottom":1 }
+            # Moving to next window when button is triggered - need to use NAME
+            on_release:
+                # Only let them through if correct psw submitted
+                app.change_screen("main_window","left")

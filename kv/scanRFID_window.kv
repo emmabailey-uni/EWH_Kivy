@@ -1,0 +1,11 @@
+<ScanRFIDWindow>:
+    background_color: [0,0,0,0]
+
+    Button:
+        id: btn_scan
+        text: "Scan RFID Tag"
+        background_color: [204/255, 0, 204/255, 0.6]
+        pos_hint: {"x": 0.0, "bottom":1}
+        size_hint: 1, 0.2
+        on_release:
+            app.change_screen("scanRFID_window","left")

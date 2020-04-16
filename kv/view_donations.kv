@@ -1,0 +1,17 @@
+<ViewDonations>
+
+    Label:
+        text: "You Have No Donations. lol"
+        font_size: 20
+        pos_hint:{"x":0,"top":0.5}
+        size_hint: 1,0.2
+        color: 1, 0, 1, 1
+
+    Button:
+        id: btn_add_donation
+        text: "Add Donation"
+        background_color: [1, 0, 1, .6]
+        pos_hint: {"x": 0, "bottom":1}
+        size_hint: 1, 0.1
+        on_release:
+            app.change_screen("new_donation","left")
