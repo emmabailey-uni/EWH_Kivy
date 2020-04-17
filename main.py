@@ -37,7 +37,6 @@ class MainWindow(Screen):
             self.manager.current = 'second_window'
         con.commit()
         con.close()
-    pass
 
 class SecondWindow(Screen):
     pass
