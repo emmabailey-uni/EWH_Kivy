@@ -23,6 +23,8 @@ class InitialWindow(Screen):
     pass
 
 class MainWindow(Screen):
+    id_no = ObjectProperty()
+    passw = ObjectProperty()
     pass
 
 class SecondWindow(Screen):
@@ -67,18 +69,36 @@ class WindowManager(ScreenManager):
 
 GUI = Builder.load_file("kv/main.kv")
 
+#Function to populate database with registered hospitals if it is empty
+def RegisteredHospitals(filename, hospitaldata):
+    con = sqlite3.connect(filename)
+    cur = con.cursor()
+    cur.execute("""SELECT COUNT(*) from Login """)
+    result=cur.fetchall()
+    if result[0][0]==0:
+        cur.executemany(""" INSERT INTO Login(id_no, passw) VALUES (?,?)""",
+            hospitaldata
+        )
+    con.commit()
+    con.close()
+
 class MyApp(App):
     try:
         con = sqlite3.connect('user.db')
         cur = con.cursor()
+        cur.execute(""" CREATE TABLE Login( 
+        'id_no' TEXT,
+        'passw' TEXT    
+        )
+        """)
         cur.execute(""" CREATE TABLE User(
-        hname text,
-        location text,
-        language text,
-        contactinfo text,
-        nostaff text,
-        capacity text,
-        status text
+        'hname' TEXT,
+        'location' TEXT,
+        'language' TEXT,
+        'contactinfo' TEXT,
+        'nostaff' TEXT,
+        'capacity' TEXT,
+        'status' TEXT
         )
         """)
         con.commit()
@@ -86,6 +106,13 @@ class MyApp(App):
 
     except:
        pass
+
+    # Define registered hospitals
+    # Not the best method but the best I could think of for now
+    # To do: Add functionality to register new hospitals if deemed necessary
+    hospitaldata = [('UCD', 'UCD2019'), ('Steinn', 'Iceland'), ('085195', 'Emma')]
+    # Input registered hospitals if table was empty
+    RegisteredHospitals('user.db', hospitaldata)
 
     def build(self):
         Window.clearcolor = (1, 1, 1, 1)
