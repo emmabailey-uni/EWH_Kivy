@@ -25,6 +25,18 @@ class InitialWindow(Screen):
 class MainWindow(Screen):
     id_no = ObjectProperty()
     passw = ObjectProperty()
+
+    # Define button behaviour to only let you through if you have correct details
+    def btn(self):
+        con = sqlite3.connect('user.db')
+        cur = con.cursor()
+        cur.execute(""" SELECT Username, Password FROM Login WHERE Username=? OR Password=?""", 
+        (self.id_no.text, self.passw.text))
+        result = cur.fetchone()
+        if (result[0] == self.id_no.text and result[1] == self.passw.text):
+            self.manager.current = 'second_window'
+        con.commit()
+        con.close()
     pass
 
 class SecondWindow(Screen):
@@ -76,7 +88,7 @@ def RegisteredHospitals(filename, hospitaldata):
     cur.execute("""SELECT COUNT(*) from Login """)
     result=cur.fetchall()
     if result[0][0]==0:
-        cur.executemany(""" INSERT INTO Login(id_no, passw) VALUES (?,?)""",
+        cur.executemany(""" INSERT INTO Login(Username, Password) VALUES (?,?)""",
             hospitaldata
         )
     con.commit()
@@ -87,8 +99,8 @@ class MyApp(App):
         con = sqlite3.connect('user.db')
         cur = con.cursor()
         cur.execute(""" CREATE TABLE Login( 
-        'id_no' TEXT,
-        'passw' TEXT    
+        'Username' TEXT,
+        'Password' TEXT    
         )
         """)
         cur.execute(""" CREATE TABLE User(
