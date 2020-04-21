@@ -71,7 +71,34 @@ class ViewDonations(Screen):
     pass
 
 class NewDonation(Screen):
-    pass
+    
+    serial = ObjectProperty()
+    makemodel = ObjectProperty()
+    manual = ObjectProperty()
+    servinfo = ObjectProperty()
+    prevmaint = ObjectProperty()
+    nextmaint = ObjectProperty()
+    disposal = ObjectProperty()
+    contact = ObjectProperty()
+    
+    def upload(self):
+        con = sqlite3.connect('user.db')
+        cur = con.cursor()
+        cur.execute(
+            """INSERT INTO Donation (serial, makemodel, manual, servinfo, prevmaint, nextmaint, disposal, contact) VALUES(?,?,?,?,?,?,?,?)""",
+            (self.serial.text, self.makemodel.text, self.manual.text, self.servinfo.text, self.prevmaint.text, self.nextmaint.text, self.disposal.text,
+            self.contact.text)
+        )
+        con.commit()
+        con.close()
+        self.serial.text = ""
+        self.makemodel.text = ""
+        self.manual.text = ""
+        self.servinfo.text = ""
+        self.prevmaint.text = ""
+        self.nextmaint.text = ""
+        self.disposal.text = ""
+        self.contact.text = ""
 
 # For transitions between windows
 class WindowManager(ScreenManager):
@@ -110,6 +137,17 @@ class MyApp(App):
         'nostaff' TEXT,
         'capacity' TEXT,
         'status' TEXT
+        )
+        """)
+        cur.execute(""" CREATE TABLE Donation(
+        'serial' TEXT,
+        'makemodel' TEXT,
+        'manual' TEXT,
+        'servinfo' TEXT,
+        'prevmaint' TEXT,
+        'nextmaint' TEXT,
+        'disposal' TEXT,
+        'contact' TEXT
         )
         """)
         con.commit()
