@@ -1,4 +1,13 @@
 <NewDonation>
+    
+    serial:serial
+    makemodel:makemodel
+    manual:manual
+    servinfo:servinfo
+    prevmaint:prevmaint
+    nextmaint:nextmaint
+    disposal:disposal
+    contact:contact
 
     Label:
         text: "New Donation"
@@ -110,7 +119,7 @@
         color: 1, 0, 1, 1
 
     TextInput:
-        id: contact
+        id: disposal
         multiline: True
         pos_hint:{"x":0.05,"top":0.3375}
         size_hint:0.9,0.11125
@@ -136,6 +145,7 @@
         background_color: [1, 0, 1, .6]
         pos_hint: {"x": 0.05, "bottom":1}
         size_hint: 0.45, 0.05
+        on_press: root.upload()
         on_release:
             app.change_screen("second_window","left")
 
