@@ -19,10 +19,17 @@
 
         Button:
             id: btn_request
-            text: "Request Donation/View Available Equipment"
+            text: "Request Donation"
             background_color: [1, 0, 1, .6]
             on_release:
-                app.change_screen("scanRFID_window","left")
+                app.change_screen("request_donation","left")
+
+        Button:
+            id: btn_request
+            text: "View Available Equipment"
+            background_color: [1, 0, 1, .6]
+            on_release:
+                app.change_screen("available_equipment","left")
 
         Button:
             id: btn_rfid

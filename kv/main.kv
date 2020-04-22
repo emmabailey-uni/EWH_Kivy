@@ -8,6 +8,9 @@
 #:include kv/donate_equipment.kv
 #:include kv/view_donations.kv
 #:include kv/new_donation.kv
+#:include kv/request_donation.kv
+#:include kv/available_equipment.kv
+
 
 GridLayout:
     cols:1
@@ -53,3 +56,12 @@ GridLayout:
         NewDonation:
             name:"new_donation"
             id:new_donation
+
+        RequestDonation:
+            name:"request_donation"
+            id:request_donation
+
+        AvailableEquipment:
+            name:"available_equipment"
+            id:available_equipment
+

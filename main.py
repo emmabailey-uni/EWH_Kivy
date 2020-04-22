@@ -73,11 +73,32 @@ class ProfileWindow(Screen):
 class ScanRFIDWindow(Screen, FloatLayout):
     pass
 
+
+
 class ViewDonations(Screen):
     pass
 
+class RequestDonation(Screen):
+
+    typemach = ObjectProperty()
+    makemodel = ObjectProperty()
+    requir = ObjectProperty()
+    lang = ObjectProperty()
+    powconv = ObjectProperty()
+    contact = ObjectProperty()
+
+    def btn(self):
+        self.manager.current = 'main_menu_recipient'
+
+class AvailableEquipment(Screen):
+
+    def btn(self):
+        self.manager.current = 'main_menu_recipient'
+
+
 class NewDonation(Screen):
-    
+
+
     serial = ObjectProperty()
     makemodel = ObjectProperty()
     manual = ObjectProperty()
