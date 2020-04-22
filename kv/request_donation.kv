@@ -74,7 +74,9 @@
             text: "Request"
             font_size: 40
             background_color: [1, 0, 1, .6]
-            on_press: root.btn()
-            on_release:
-                app.root.current = "second"
-                app.change_screen("split_window","right")
+            on_press:
+                root.request()
+                app.change_screen("main_menu_recipient","right")
+            #on_release:
+              #app.root.current = "second"
+              #app.change_screen("split_window","right")
