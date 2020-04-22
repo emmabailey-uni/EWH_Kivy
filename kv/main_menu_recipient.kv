@@ -1,0 +1,32 @@
+<MainMenuRecipient>:
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            text: "Main Menu"
+            font_size: 40
+            multiline: True
+            italic: True
+            color: 1, 0, 1, 1
+
+        Button:
+            id: btn_profile
+            text: "Edit Profile"
+            background_color: [1, 0, 1, .6]
+            on_release:
+                app.change_screen("profile_window","left")
+
+        Button:
+            id: btn_request
+            text: "Request Donation/View Available Equipment"
+            background_color: [1, 0, 1, .6]
+            on_release:
+                app.change_screen("scanRFID_window","left")
+
+        Button:
+            id: btn_rfid
+            text: "Scan RFID"
+            background_color: [1, 0, 1, .6]
+            on_release:
+                app.change_screen("scanRFID_window","left")

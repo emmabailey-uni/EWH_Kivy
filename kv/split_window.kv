@@ -1,0 +1,24 @@
+<SplitWindow>:
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            text: "Please Select"
+            font_size: 40
+            multiline: True
+            italic: True
+            color: 1, 0, 1, 1
+
+        Button:
+            id: btn_profile
+            text: "Donor"
+            background_color: [1, 0, 1, .6]
+            on_release:
+                app.change_screen("main_menu_donor","left")
+        Button:
+            id: btn_donate
+            text: "Recipient"
+            background_color: [1, 0, 1, .6]
+            on_release:
+                app.change_screen("main_menu_recipient","left")

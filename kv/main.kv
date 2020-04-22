@@ -1,6 +1,8 @@
 #:include kv/initial_window.kv
 #:include kv/main_window.kv
-#:include kv/second_window.kv
+#:include kv/split_window.kv
+#:include kv/main_menu_donor.kv
+#:include kv/main_menu_recipient.kv
 #:include kv/scanRFID_window.kv
 #:include kv/profile_window.kv
 #:include kv/donate_equipment.kv
@@ -20,9 +22,17 @@ GridLayout:
             name:"main_window"
             id:main_window
 
-        SecondWindow:
-            name:"second_window"
-            id:second_window
+        SplitWindow:
+            name:"split_window"
+            id:main_window
+
+        MainMenuDonor:
+            name:"main_menu_donor"
+            id:main_window
+
+        MainMenuRecipient:
+            name:"main_menu_recipient"
+            id:main_window
 
         ScanRFIDWindow:
             name:"scanRFID_window"
