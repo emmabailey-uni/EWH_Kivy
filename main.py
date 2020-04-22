@@ -83,7 +83,6 @@ class ProfileWindow(Screen):
         result=cur.fetchone()
         if result:
             print("Nope")
-            #I'll probably add a popup here over the weekend:)
         else:
             cur.execute(
                 """ INSERT INTO User (hname, location, language, contactinfo, nostaff, capacity, status) VALUES (?,?,?,?,?,?,?)""",
