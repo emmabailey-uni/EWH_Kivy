@@ -1,0 +1,80 @@
+<RequestDonation>
+
+
+    typemach:typemach
+    makemodel:makemodel
+    requir:requir
+    lang:lang
+    powconv:powconv
+    contact:contact
+
+
+
+
+    GridLayout:
+        cols:1
+
+
+
+        GridLayout:
+            cols:2
+
+
+            Label:
+                text: "Type of Machine:"
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: typemach
+                multiline: False
+
+            Label:
+                text: "Make and Model: "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: makemodel
+                multiline: False
+
+            Label:
+                text:"Requirements: "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: requir
+                multiline: False
+
+            Label:
+                text:"Language: "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: lang
+                multiline: False
+
+            Label:
+                text:"Power Convention: "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: powconv
+                multiline: False
+
+            Label:
+                text:"Contact Details (Hospital ID): "
+                color: 1, 0, 1, 1
+
+            TextInput:
+                id: contact
+                multiline: False
+
+
+
+        Button:
+            text: "Request"
+            font_size: 40
+            background_color: [1, 0, 1, .6]
+            on_press: root.btn()
+            on_release:
+                app.root.current = "second"
+                app.change_screen("second_window","right")

@@ -35,8 +35,23 @@ class MainWindow(Screen):
         result = cur.fetchone()
         if (result[0] == self.id_no.text and result[1] == self.passw.text):
             self.manager.current = 'split_window'
+        
+        else:
+            show_popup()
         con.commit()
         con.close()
+
+
+class P(FloatLayout):
+    pass
+
+def show_popup():
+    show = P()
+
+    #Default position is middle of screen, don't want dynamic resizing
+    popupwindow = Popup(title = "Popup Window", content = show, size_hint=(None, None), size = (400, 400))
+
+    popupwindow.open()
 
 class SplitWindow(Screen):
     pass
@@ -73,11 +88,32 @@ class ProfileWindow(Screen):
 class ScanRFIDWindow(Screen, FloatLayout):
     pass
 
+
+
 class ViewDonations(Screen):
     pass
 
+class RequestDonation(Screen):
+
+    typemach = ObjectProperty()
+    makemodel = ObjectProperty()
+    requir = ObjectProperty()
+    lang = ObjectProperty()
+    powconv = ObjectProperty()
+    contact = ObjectProperty()
+
+    def btn(self):
+        self.manager.current = 'main_menu_recipient'
+
+class AvailableEquipment(Screen):
+
+    def btn(self):
+        self.manager.current = 'main_menu_recipient'
+
+
 class NewDonation(Screen):
-    
+
+
     serial = ObjectProperty()
     makemodel = ObjectProperty()
     manual = ObjectProperty()
@@ -109,6 +145,7 @@ class NewDonation(Screen):
 # For transitions between windows
 class WindowManager(ScreenManager):
     pass
+
 
 
 GUI = Builder.load_file("kv/main.kv")
