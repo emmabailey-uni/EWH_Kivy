@@ -77,11 +77,19 @@ class ProfileWindow(Screen):
     def btn(self):
         con = sqlite3.connect('user.db')
         cur = con.cursor()
-        cur.execute(
-            """ INSERT INTO User (hname, location, language, contactinfo, nostaff, capacity, status) VALUES (?,?,?,?,?,?,?)""",
-            (self.hname.text, self.location.text, self.language.text, self.contactinfo.text, self.nostaff.text,
-             self.capacity.text, self.status.text)
-            )
+        cur.execute(""" SELECT hname, location, language, contactinfo, nostaff, capacity, status FROM User WHERE hname=? OR location=? OR language=? OR contactinfo=? OR nostaff=? OR capacity=? OR status=? """,
+                     (self.hname.text, self.location.text, self.language.text, self.contactinfo.text, self.nostaff.text,
+                      self.capacity.text, self.status.text))
+        result=cur.fetchone()
+        if result:
+            print("Nope")
+            #I'll probably add a popup here over the weekend:)
+        else:
+            cur.execute(
+                """ INSERT INTO User (hname, location, language, contactinfo, nostaff, capacity, status) VALUES (?,?,?,?,?,?,?)""",
+                (self.hname.text, self.location.text, self.language.text, self.contactinfo.text, self.nostaff.text,
+                 self.capacity.text, self.status.text)
+                )
         con.commit()
         con.close()
 
@@ -218,3 +226,4 @@ class MyApp(App):
 
 if __name__ == "__main__":
     MyApp().run()
+
