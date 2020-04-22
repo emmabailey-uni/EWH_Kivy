@@ -147,7 +147,7 @@
         size_hint: 0.45, 0.05
         on_press: root.upload()
         on_release:
-            app.change_screen("second_window","left")
+            app.change_screen("main_menu_donor","left")
 
     Button:
         id: btn_scan_new
@@ -156,4 +156,4 @@
         pos_hint: {"x": 0.5, "bottom":1}
         size_hint: 0.45, 0.05
         on_release:
-            app.change_screen("second_window","left")
+            app.change_screen("scanRFID_window","left")

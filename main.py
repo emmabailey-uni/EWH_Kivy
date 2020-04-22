@@ -34,11 +34,17 @@ class MainWindow(Screen):
         (self.id_no.text, self.passw.text))
         result = cur.fetchone()
         if (result[0] == self.id_no.text and result[1] == self.passw.text):
-            self.manager.current = 'second_window'
+            self.manager.current = 'split_window'
         con.commit()
         con.close()
 
-class SecondWindow(Screen):
+class SplitWindow(Screen):
+    pass
+
+class MainMenuDonor(Screen):
+    pass
+
+class MainMenuRecipient(Screen):
     pass
 
 class DonateEquipment(Screen, FloatLayout):
