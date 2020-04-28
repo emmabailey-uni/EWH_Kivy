@@ -5,7 +5,25 @@
         id: btn_scan
         text: "Scan RFID Tag"
         background_color: [204/255, 0, 204/255, 0.6]
-        pos_hint: {"x": 0.0, "bottom":1}
-        size_hint: 1, 0.2
+        pos_hint: {"x": 0.05, "top":0.8}
+        size_hint: 0.9, 0.2
         on_release:
-            app.change_screen("scanRFID_window","left")
+            app.change_screen("split_window","left")
+            
+    Button:
+        id: btn_override
+        text: "Enter Serial Number"
+        background_color: [204/255, 0, 204/255, 0.6]
+        pos_hint: {"x": 0.05, "top":0.4}
+        size_hint: 0.9, 0.2
+        on_release:
+            app.change_screen("manual_override","left")
+            
+    Label:
+        text: "or"
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.6}
+        size_hint:0.9,0.2
+        multiline: False
+        italic: True
+        color: 1, 0, 1, 1

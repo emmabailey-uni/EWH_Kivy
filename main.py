@@ -91,7 +91,8 @@ class ProfileWindow(Screen):
 class ScanRFIDWindow(Screen, FloatLayout):
     pass
 
-
+class ManualOverride(Screen):
+    pass
 
 class ViewDonations(Screen):
     pass
