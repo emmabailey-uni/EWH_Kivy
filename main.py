@@ -77,11 +77,14 @@ class ProfileWindow(Screen):
     def btn(self):
         con = sqlite3.connect('user.db')
         cur = con.cursor()
+        cur.execute(""" DELETE FROM User WHERE hname=? """,
+                     (self.hname.text,))
+ 
         cur.execute(
-            """ INSERT INTO User (hname, location, language, contactinfo, nostaff, capacity, status) VALUES (?,?,?,?,?,?,?)""",
-            (self.hname.text, self.location.text, self.language.text, self.contactinfo.text, self.nostaff.text,
-             self.capacity.text, self.status.text)
-            )
+                """ INSERT INTO User (hname, location, language, contactinfo, nostaff, capacity, status) VALUES (?,?,?,?,?,?,?)""",
+                (self.hname.text, self.location.text, self.language.text, self.contactinfo.text, self.nostaff.text,
+                 self.capacity.text, self.status.text)
+                )
         con.commit()
         con.close()
 

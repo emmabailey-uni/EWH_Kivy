@@ -8,73 +8,134 @@
     capacity:capacity
     status:status
 
-    GridLayout:
-        cols:1
 
+    Label:
+        text: "Edit Profile Details"
+        font_size: 40
+        pos_hint:{"x":0.05,"top":1}
+        size_hint:0.9,0.1
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+ 
+    Label:
+        text: "Hospital Name: "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.875}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
 
-        GridLayout:
-            cols:2
+    TextInput:
+        id: hname
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.825}
+        size_hint:0.9,0.05
 
-            Label:
-                text: "Hospital Name: "
-                color: 1, 0, 1, 1
+    Label:
+        text: "Location: "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.775}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+       
 
-            TextInput:
-                id: hname
-                multiline: False
+    TextInput:
+        id: location
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.725}
+        size_hint:0.9,0.05
 
-            Label:
-                text: "Location: "
-                color: 1, 0, 1, 1
+    Label:
+        text:"Language: "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.675}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+       
 
-            TextInput:
-                id: location
-                multiline: False
+    TextInput:
+        id: language
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.625}
+        size_hint:0.9,0.05
 
-            Label:
-                text:"Language: "
-                color: 1, 0, 1, 1
+    Label:
+        text:"Contact Information: "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.575}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
 
-            TextInput:
-                id: language
-                multiline: False
+    TextInput:
+        id: contactinfo
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.525}
+        size_hint:0.9,0.05
 
-            Label:
-                text:"Contact Information: "
-                color: 1, 0, 1, 1
+    Label:
+        text:"Number of Staff: "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.475}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+        
 
-            TextInput:
-                id: contactinfo
-                multiline: False
+    TextInput:
+        id: nostaff
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.425}
+        size_hint:0.9,0.05
 
-            Label:
-                text:"Number of Staff: "
-                color: 1, 0, 1, 1
+    Label:
+        text: "Capacity: "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.375}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+        
 
-            TextInput:
-                id: nostaff
-                multiline: False
+    TextInput:
+        id: capacity
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.325}
+        size_hint:0.9,0.05
 
-            Label:
-                text: "Capacity: "
-                color: 1, 0, 1, 1
+    Label:
+        text: "Status : "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.275}
+        size_hint:0.9,0.0375  
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+        
 
-            TextInput:
-                id: capacity
-                multiline: False
+    TextInput:
+        id: status
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.225}
+        size_hint:0.9,0.05
 
-            Label:
-                text: "Status - Donor/Recipient: "
-                color: 1, 0, 1, 1
-
-            TextInput:
-                id: status
-                multiline: False
-
-        Button:
-            text: "Submit "
-            background_color: [1, 0, 1, .6]
-            on_press: root.btn()
-            on_release:
-                app.root.current = "second"
-                app.change_screen("split_window","right")
+    Button:
+        text: "Submit "
+        font_size: 25
+        background_color: [1, 0, 1, .6]
+        pos_hint: {"x": 0.0, "bottom":1}
+        size_hint: 1,0.125
+        italic: True
+        on_press: root.btn()
+        on_release:
+            app.root.current = "second"
+            app.change_screen("split_window","right")
