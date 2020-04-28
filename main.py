@@ -108,6 +108,23 @@ class RequestDonation(Screen):
     def btn(self):
         self.manager.current = 'main_menu_recipient'
 
+    def request(self):
+        con = sqlite3.connect('user.db')
+        cur = con.cursor()
+        cur.execute(
+            """INSERT INTO Recip_Req (typemach, makemodel, requir, lang, powconv, contact) VALUES(?,?,?,?,?,?)""",
+            (self.typemach.text, self.makemodel.text, self.requir.text, self.lang.text, self.powconv.text,self.contact.text)
+        )
+        con.commit()
+        con.close()
+        self.typemach.text = ""
+        self.makemodel.text = ""
+        self.requir.text = ""
+        self.lang.text = ""
+        self.powconv.text = ""
+        self.contact.text = ""
+
+
 class AvailableEquipment(Screen):
 
     def btn(self):
@@ -130,8 +147,10 @@ class NewDonation(Screen):
         con = sqlite3.connect('user.db')
         cur = con.cursor()
         cur.execute(
-            """INSERT INTO Donation (serial, makemodel, manual, servinfo, prevmaint, nextmaint, disposal, contact) VALUES(?,?,?,?,?,?,?,?)""",
-            (self.serial.text, self.makemodel.text, self.manual.text, self.servinfo.text, self.prevmaint.text, self.nextmaint.text, self.disposal.text,
+            """INSERT INTO Donation (serial, makemodel, manual, servinfo, prevmaint, nextmaint, disposal, contact) 
+            VALUES(?,?,?,?,?,?,?,?)""",
+            (self.serial.text, self.makemodel.text, self.manual.text, self.servinfo.text, self.prevmaint.text,
+             self.nextmaint.text, self.disposal.text,
             self.contact.text)
         )
         con.commit()
@@ -196,6 +215,15 @@ class MyApp(App):
         'contact' TEXT
         )
         """)
+        cur.execute(""" CREATE TABLE Recip_Req(
+        'typemach' TEXT,
+        'makemodel' TEXT,
+        'requir' TEXT,
+        'lang' TEXT,
+        'powconv' TEXT,
+        'contact' TEXT
+        )
+         """)
         con.commit()
         con.close()
 
