@@ -11,11 +11,18 @@ from kivy.properties import ObjectProperty
 from kivy.uix.label import Label
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.popup import Popup
+from kivy.uix.recycleview import RecycleView
+from kivy.uix.recycleview.views import RecycleDataViewBehavior
+from kivy.uix.button import Button
+from kivy.uix.recycleboxlayout import RecycleBoxLayout
+from kivy.uix.behaviors import FocusBehavior
+from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivy.graphics import Color
 from kivy.graphics import Triangle
 from kivy.graphics import Rectangle
 from kivy.graphics import Color
 from kivy.graphics import Line
+from numpy import size
 import sqlite3
 
 
@@ -126,12 +133,6 @@ class RequestDonation(Screen):
         self.contact.text = ""
 
 
-class AvailableEquipment(Screen):
-
-    def btn(self):
-        self.manager.current = 'main_menu_recipient'
-
-
 class NewDonation(Screen):
 
 
@@ -165,10 +166,100 @@ class NewDonation(Screen):
         self.disposal.text = ""
         self.contact.text = ""
 
+class SteriliserList(Screen):
+    pass
+
+class DefibrillatorList(Screen):
+    pass
+
+class ECG_MachineList(Screen):
+    pass
+
+class AvailableEquipment(Screen):
+    category = ''
+
+    @classmethod
+    def updateCategory(cls, category):
+        cls.category = category
+
+class EquipmentInfo(Screen):
+    def on_enter(self):
+        self.updateInfo()
+
+    def updateInfo(self):
+        self.item = filterDbBy('Available_Equipment', 'mach_type', AvailableEquipment.category)[
+            int(SelectableButton.btn_id)]
+        self.ids.title.text = AvailableEquipment.category.capitalize()
+        self.ids.serial.text = self.item[0]
+        self.ids.makemodel.text = self.item[2]
+        self.ids.manual.text = self.item[3]
+        self.ids.servinfo.text = self.item[4]
+        self.ids.prevmaint.text = self.item[5]
+        self.ids.nextmaint.text = self.item[6]
+        self.ids.disposal.text = self.item[7]
+        self.ids.contact.text = self.item[8]
+
+class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior, RecycleBoxLayout):
+    pass
+
+class SelectableButton(RecycleDataViewBehavior, Button):
+    """ Add selection support to the Label """
+    index = None
+    btn_id = None
+
+    def refresh_view_attrs(self, rv, index, data):
+        """ Catch and handle the view changes """
+        self.index = index
+        return super(SelectableButton, self).refresh_view_attrs(rv, index, data)
+
+    @classmethod
+    def updateBtn(cls, btn_id):
+        cls.btn_id = btn_id
+        # print(cls.btn_id)
+
+    def btn(self):
+        print(self.id)
+
+class SterilRV(RecycleView):
+    rv_layout = ObjectProperty(None)
+
+    def __init__(self, **kwargs):
+        super(SterilRV, self).__init__(**kwargs)
+        self.items = filterDbBy('Available_Equipment', 'mach_type', 'steriliser')
+        self.data = [{'text': self.items[x][1], 'id': str(x)} for x in range(size(self.items, 0))]
+
+
+class DefibRV(RecycleView):
+    rv_layout = ObjectProperty(None)
+
+    def __init__(self, **kwargs):
+        super(DefibRV, self).__init__(**kwargs)
+        self.items = filterDbBy('Available_Equipment', 'mach_type', 'defibrillator')
+        self.data = [{'text': self.items[x][1], 'id': str(x)} for x in range(size(self.items, 0))]
+
+
+class ECGRV(RecycleView):
+    rv_layout = ObjectProperty(None)
+
+    def __init__(self, **kwargs):
+        super(ECGRV, self).__init__(**kwargs)
+        self.items = filterDbBy('Available_Equipment', 'mach_type', 'ecg_machine')
+        self.data = [{'text': self.items[x][1], 'id': str(x)} for x in range(size(self.items, 0))]
+
+
 # For transitions between windows
 class WindowManager(ScreenManager):
     pass
 
+
+def filterDbBy(table,field,term):
+    con = sqlite3.connect('user.db')
+    cur = con.cursor()
+    filtered = cur.execute('SELECT * FROM {} WHERE {} =?'.format(table,field), (term,))
+    res = filtered.fetchall()
+    con.commit()
+    con.close()
+    return res
 
 
 GUI = Builder.load_file("kv/main.kv")
@@ -185,6 +276,7 @@ def RegisteredHospitals(filename, hospitaldata):
         )
     con.commit()
     con.close()
+
 
 class MyApp(App):
     try:

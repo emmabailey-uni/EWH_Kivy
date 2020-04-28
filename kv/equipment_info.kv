@@ -1,0 +1,151 @@
+<EquipmentInfo>
+
+    Label:
+        id: title
+        text: "Something"
+        font_size: 40
+        pos_hint:{"x":0.05,"top":1}
+        size_hint:0.9,0.1
+        #multiline: True
+        #italic: True
+        color: 1, 0, 1, 1
+
+    Label:
+        text: "Serial Number"
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.8875}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    Label:
+        id: serial
+        text: 'pleb'
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.85}
+        size_hint:0.9,0.0375
+        color: 0, 0, 0, 1
+
+    Label:
+        text: "Make & Model"
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.8}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    Label:
+        id: makemodel
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.7625}
+        size_hint:0.9,0.0375
+        color: 0, 0, 0, 1
+
+    Label:
+        text: "Manual"
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.7125}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    Label:
+        id: manual
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.675}
+        size_hint:0.9,0.0375
+        color: 0, 0, 0, 1
+
+    Label:
+        text: "Service Information"
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.625}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    Label:
+        id: servinfo
+        multiline: True
+        pos_hint:{"x":0.05,"top":0.5875}
+        size_hint:0.9,.11125
+        color: 0, 0, 0, 1
+
+
+    Label:
+        text: "Last Maintenance"
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.4625}
+        size_hint:0.425,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    Label:
+        id: prevmaint
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.425}
+        size_hint:0.425,0.0375
+        color: 0, 0, 0, 1
+
+    Label:
+        text: "Next Maintenance"
+        font_size: 20
+        pos_hint:{"x":0.525,"top":0.4625}
+        size_hint:0.425,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    Label:
+        id: nextmaint
+        multiline: False
+        pos_hint:{"x":0.525,"top":0.425}
+        size_hint:0.425,0.0375
+        color: 0, 0, 0, 1
+
+    Label:
+        text: "Disposal Information"
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.375}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    Label:
+        id: disposal
+        multiline: True
+        pos_hint:{"x":0.05,"top":0.3375}
+        size_hint:0.9,0.11125
+        color: 0, 0, 0, 1
+
+    Label:
+        text: "Contact Information"
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.2125}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    Label:
+        id: contact
+        multiline: True
+        pos_hint:{"x":0.05,"top":0.175}
+        size_hint:0.9,0.11125
+        color: 0, 0, 0, 1
+
+    Button:
+        id: btn_upload
+        text: "Previous Screen"
+        background_color: [1, 0, 1, .6]
+        pos_hint: {"x": 0, "bottom":1}
+        size_hint: 1, 0.1
+        on_release:
+            app.change_screen("available_equipment","left")
+
