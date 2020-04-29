@@ -7,34 +7,34 @@
         size_hint: 1,0.2
         color: 1, 0, 1, 1
 
-
-
     Button:
-        text: "Defibrillator "
+        id:defibrillator
+        text: "Defibrillator"
         background_color: [1, 0, 1, .6]
         pos_hint: {"x": 0.0, "top":0.75}
         size_hint: 1, 0.2
-        on_press: root.btn()
         on_release:
-            app.root.current = "second"
-            app.change_screen("main_menu_recipient","right")
+            root.updateCategory('defibrillator')
+            app.change_screen('defibrillator_list','left')
+
 
     Button:
+        id:ecg_machine
         text: "ECG Machine"
         background_color: [1, 0, 1, .6]
         pos_hint: {"x": 0.0, "top":0.5}
         size_hint: 1, 0.2
-        on_press: root.btn()
         on_release:
-            app.root.current = "second"
-            app.change_screen("main_menu_recipient","right")
+            root.updateCategory('ecg_machine')
+            app.change_screen('ecg_machine_list','left')
+
 
     Button:
+        id:steriliser
         text: "Sterilizer"
         background_color: [1, 0, 1, .6]
         pos_hint: {"x": 0.0, "top":0.25}
         size_hint: 1, 0.2
-        on_press: root.btn()
         on_release:
-            app.root.current = "second"
-            app.change_screen("main_menu_recipient","right")
+            root.updateCategory('steriliser')
+            app.change_screen('steriliser_list','left')

@@ -11,7 +11,10 @@
 #:include kv/request_donation.kv
 #:include kv/available_equipment.kv
 #:include kv/manual_override.kv
-
+#:include kv/ecg_machine_list.kv
+#:include kv/equipment_info.kv
+#:include kv/defibrillator_list.kv
+#:include kv/steriliser_list.kv
 
 GridLayout:
     cols:1
@@ -69,3 +72,19 @@ GridLayout:
         ManualOverride:
             name: "manual_override"
             id:manual_override
+
+        DefibrillatorList:
+            name:"defibrillator_list"
+            id:defibrillator_list
+
+        SteriliserList:
+            name:"steriliser_list"
+            id:steriliser_list
+
+        ECG_MachineList:
+            name:"ecg_machine_list"
+            id:ecg_machine_list
+
+        EquipmentInfo:
+            name:"equipment_info"
+            id:equipment_info
