@@ -69,6 +69,9 @@ class MainMenuDonor(Screen):
 class MainMenuRecipient(Screen):
     pass
 
+class DonateEquipment(Screen, FloatLayout):
+    pass
+
 class ProfileWindow(Screen):
     hname = ObjectProperty()
     location = ObjectProperty()
@@ -93,10 +96,10 @@ class ProfileWindow(Screen):
         con.close()
 
 class ScanRFIDWindow(Screen, FloatLayout):
-    app=App.get_running_app()
+    pass
 
 class ManualOverride(Screen):
-    app=App.get_running_app()
+    pass
 
 class ViewDonations(Screen):
     pass
@@ -319,8 +322,6 @@ class MyApp(App):
 
     except:
        pass
-
-    path=''
 
     # Define registered hospitals
     # Not the best method but the best I could think of for now
