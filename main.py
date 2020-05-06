@@ -37,16 +37,18 @@ class MainWindow(Screen):
     def btn(self):
         con = sqlite3.connect('user.db')
         cur = con.cursor()
-        cur.execute(""" SELECT Username, Password FROM Login WHERE Username=? OR Password=?""", 
+        cur.execute(""" SELECT Username, Password FROM Login WHERE Username=? AND Password=?""",
         (self.id_no.text, self.passw.text))
         result = cur.fetchone()
-        if (result[0] == self.id_no.text and result[1] == self.passw.text):
+        if result:
             self.manager.current = 'split_window'
-        
         else:
             show_popup()
         con.commit()
         con.close()
+
+
+
 
 
 class P(FloatLayout):
