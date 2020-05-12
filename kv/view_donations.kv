@@ -1,28 +1,60 @@
-<ViewDonations>
+#:kivy 1.10.0
 
-    Label:
-        text: "You Have No Donations. lol"
-        font_size: 20
-        pos_hint:{"x":0,"top":0.5}
-        size_hint: 1,0.2
-        color: 1, 0, 1, 1
 
-    Button:
-        id: btn_add_donation
-        text: "Add Donation"
-        background_color: [1, 0, 1, .6]
-        pos_hint: {"x": 0, "bottom":1}
-        size_hint: 1, 0.1
-        on_release:
-            app.change_screen("new_donation","left")
-            app.previous="view_donations"
-            
-    Button:
-        text: "Back"
-        font_size: 15
-        background_color: [1, 0, 1, .6]
-        pos_hint: {"x":0.0, "top":1.0}
-        size_hint: 0.1,0.1
-        on_release:
-            app.change_screen(app.previous,"left")
-            app.previous="view_donations"
+<SelectableButton2>:
+    # Draw a background to indicate selection
+    canvas.before:
+        Color:
+            rgba: (1, 1, 1, 0)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    on_release:
+        #root.updateBtn(self.id)
+        #app.change_screen("equipment_info","left")
+
+
+<ViewDonations>:
+
+    donation_rv:donation_rv
+
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Your Donations"
+            font_size: 40
+            pos_hint:{"x":0,"top":0}
+            size_hint: 1,0.2
+            color: 1, 0, 1, 1
+
+        DonationRV:
+            id: donation_rv
+            rv_layout: layout
+            viewclass:'SelectableButton2'
+            SelectableRecycleBoxLayout:
+                id: layout
+                default_size: None, dp(56)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: "vertical"
+
+        Button:
+            id: btn_add_donation
+            text: "Add Donation"
+            background_color: [1, 0, 1, .6]
+            pos_hint: {"x": 0, "bottom":1}
+            size_hint: 1, 0.1
+            on_release:
+                app.change_screen("new_donation","left")
+                app.previous="view_donations"
+
+        Button:
+            text: "Back"
+            font_size: 15
+            background_color: [1, 0, 1, .6]
+            pos_hint: {"x":0.0, "top":1.0}
+            size_hint: 0.1,0.1
+            on_release:
+                app.change_screen("main_menu_donor","right")
+                app.previous="view_donations"

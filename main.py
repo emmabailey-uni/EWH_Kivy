@@ -48,9 +48,6 @@ class MainWindow(Screen):
         con.close()
 
 
-
-
-
 class P(FloatLayout):
     pass
 
@@ -101,7 +98,17 @@ class ManualOverride(Screen):
     pass
 
 class ViewDonations(Screen):
-    pass
+    def on_pre_enter(self, *args):
+        con = sqlite3.connect('user.db')
+        cur = con.cursor()
+        filtered = cur.execute('SELECT * FROM Donation')
+        self.items = filtered.fetchall()
+        self.data = [{'text': self.items[x][1], 'id': str(x)} for x in range(size(self.items, 0))]
+        con.commit()
+        con.close()
+        rv = self.ids.donation_rv
+        rv.data = self.data
+        rv.refresh_from_data()
 
 class RequestDonation(Screen):
 
@@ -165,14 +172,15 @@ class NewDonation(Screen):
         self.disposal.text = ""
         self.contact.text = ""
 
-class SteriliserList(Screen):
-    pass
 
-class DefibrillatorList(Screen):
-    pass
+class AvailableList(Screen):
+    def on_pre_enter(self, *args):
+        self.items = filterDbBy('Available_Equipment', 'mach_type',AvailableEquipment.category)
+        self.data = [{'text': self.items[x][1], 'id': str(x)} for x in range(size(self.items, 0))]
+        rv = self.ids.available_rv
+        rv.data = self.data
+        rv.refresh_from_data()
 
-class ECG_MachineList(Screen):
-    pass
 
 class AvailableEquipment(Screen):
     category = ''
@@ -187,7 +195,7 @@ class EquipmentInfo(Screen):
 
     def updateInfo(self):
         self.item = filterDbBy('Available_Equipment', 'mach_type', AvailableEquipment.category)[
-            int(SelectableButton.btn_id)]
+            int(SelectableButton1.btn_id)]
         self.ids.title.text = AvailableEquipment.category.capitalize()
         self.ids.serial.text = self.item[0]
         self.ids.makemodel.text = self.item[2]
@@ -201,7 +209,7 @@ class EquipmentInfo(Screen):
 class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior, RecycleBoxLayout):
     pass
 
-class SelectableButton(RecycleDataViewBehavior, Button):
+class SelectableButton1(RecycleDataViewBehavior, Button):
     """ Add selection support to the Label """
     index = None
     btn_id = None
@@ -209,42 +217,44 @@ class SelectableButton(RecycleDataViewBehavior, Button):
     def refresh_view_attrs(self, rv, index, data):
         """ Catch and handle the view changes """
         self.index = index
-        return super(SelectableButton, self).refresh_view_attrs(rv, index, data)
+        return super(SelectableButton1, self).refresh_view_attrs(rv, index, data)
 
     @classmethod
     def updateBtn(cls, btn_id):
         cls.btn_id = btn_id
-        # print(cls.btn_id)
 
-    def btn(self):
-        print(self.id)
 
-class SterilRV(RecycleView):
+class SelectableButton2(RecycleDataViewBehavior, Button):
+    """ Add selection support to the Label """
+    index = None
+    btn_id = None
+
+    def refresh_view_attrs(self, rv, index, data):
+        """ Catch and handle the view changes """
+        self.index = index
+        return super(SelectableButton2, self).refresh_view_attrs(rv, index, data)
+
+
+class AvailableRV(RecycleView):
     rv_layout = ObjectProperty(None)
 
     def __init__(self, **kwargs):
-        super(SterilRV, self).__init__(**kwargs)
-        self.items = filterDbBy('Available_Equipment', 'mach_type', 'steriliser')
-        self.data = [{'text': self.items[x][1], 'id': str(x)} for x in range(size(self.items, 0))]
-
-
-class DefibRV(RecycleView):
-    rv_layout = ObjectProperty(None)
-
-    def __init__(self, **kwargs):
-        super(DefibRV, self).__init__(**kwargs)
+        super(AvailableRV, self).__init__(**kwargs)
         self.items = filterDbBy('Available_Equipment', 'mach_type', 'defibrillator')
         self.data = [{'text': self.items[x][1], 'id': str(x)} for x in range(size(self.items, 0))]
 
-
-class ECGRV(RecycleView):
+class DonationRV(RecycleView):
     rv_layout = ObjectProperty(None)
 
     def __init__(self, **kwargs):
-        super(ECGRV, self).__init__(**kwargs)
-        self.items = filterDbBy('Available_Equipment', 'mach_type', 'ecg_machine')
+        super(DonationRV, self).__init__(**kwargs)
+        con = sqlite3.connect('user.db')
+        cur = con.cursor()
+        filtered = cur.execute('SELECT * FROM Donation')
+        self.items = filtered.fetchall()
         self.data = [{'text': self.items[x][1], 'id': str(x)} for x in range(size(self.items, 0))]
-
+        con.commit()
+        con.close()
 
 # For transitions between windows
 class WindowManager(ScreenManager):
