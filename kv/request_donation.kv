@@ -9,7 +9,15 @@
     contact:contact
 
 
-
+    Button:
+        text: "Back"
+        font_size: 15
+        background_color: [1, 0, 1, .6]
+        pos_hint: {"x":0.0, "top":1.0}
+        size_hint: 0.1,0.1
+        on_release:
+            app.change_screen(app.previous,"left")
+            app.previous="request_donation"
 
     GridLayout:
         cols:1
@@ -77,6 +85,7 @@
             on_press:
                 root.request()
                 app.change_screen("main_menu_recipient","right")
+                app.previous="request_donation"
             #on_release:
               #app.root.current = "second"
               #app.change_screen("split_window","right")
