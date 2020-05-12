@@ -95,10 +95,10 @@ class ProfileWindow(Screen):
         con.close()
 
 class ScanRFIDWindow(Screen, FloatLayout):
-    app=App.get_running_app()
+    pass
 
 class ManualOverride(Screen):
-    app=App.get_running_app()
+    pass
 
 class ViewDonations(Screen):
     pass
@@ -323,6 +323,7 @@ class MyApp(App):
        pass
 
     path=''
+    previous=''
 
     # Define registered hospitals
     # Not the best method but the best I could think of for now

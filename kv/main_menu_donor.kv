@@ -15,12 +15,14 @@
             text: "Edit Profile"
             background_color: [1, 0, 1, .6]
             on_release:
+                app.previous="main_menu_donor"
                 app.change_screen("profile_window","left")
         Button:
             id: btn_donate
             text: "Donate"
             background_color: [1, 0, 1, .6]
             on_release:
+                app.previous="main_menu_donor"
                 app.change_screen("new_donation","left")
 
         Button:
@@ -28,4 +30,15 @@
             text: "Your Donated Machines"
             background_color: [1, 0, 1, .6]
             on_release:
+                app.previous="main_menu_donor"
                 app.change_screen("view_donations","left")
+                
+    Button:
+        text: "Back"
+        font_size: 15
+        background_color: [1, 0, 1, .6]
+        pos_hint: {"x":0.0, "top":1.0}
+        size_hint: 0.1,0.1
+        on_release:
+            app.change_screen(app.previous,"left")
+            app.previous="main_menu_donor"

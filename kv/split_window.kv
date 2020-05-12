@@ -17,6 +17,7 @@
             on_release:
                 app.path='main_menu_donor'
                 app.change_screen("main_menu_donor","left")
+                app.previous="split_window"
         Button:
             id: btn_donate
             text: "Recipient"
@@ -24,3 +25,4 @@
             on_release:
                 app.path='main_menu_recipient'
                 app.change_screen("main_menu_recipient","left")
+                app.previous="split_window"

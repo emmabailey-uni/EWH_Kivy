@@ -9,6 +9,7 @@
         size_hint: 0.9, 0.2
         on_release:
             app.change_screen(app.path,"left")
+            app.previous="scanRFID_window"
             
     Button:
         id: btn_override
@@ -18,6 +19,7 @@
         size_hint: 0.9, 0.2
         on_release:
             app.change_screen("manual_override","left")
+            app.previous="scanRFID_window"
             
     Label:
         text: "or"
@@ -27,3 +29,13 @@
         multiline: False
         italic: True
         color: 1, 0, 1, 1
+        
+    Button:
+        text: "Back"
+        font_size: 15
+        background_color: [1, 0, 1, .6]
+        pos_hint: {"x":0.0, "top":1.0}
+        size_hint: 0.1,0.1
+        on_release:
+            app.change_screen(app.previous,"left")
+            app.previous="scanRFID_window"
