@@ -38,3 +38,12 @@
         on_release:
             root.updateCategory('steriliser')
             app.change_screen('steriliser_list','left')
+            
+    Button:
+        text: "Back"
+        font_size: 15
+        background_color: [1, 0, 1, .6]
+        pos_hint: {"x":0.0, "top":1.0}
+        size_hint: 0.1,0.1
+        on_release:
+            app.change_screen(app.previous,"left")
