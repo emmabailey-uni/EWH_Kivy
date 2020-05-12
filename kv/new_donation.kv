@@ -148,6 +148,7 @@
         on_press: root.upload()
         on_release:
             app.change_screen("main_menu_donor","left")
+            app.previous="new_donation"
 
     Button:
         id: btn_scan_new
@@ -157,3 +158,14 @@
         size_hint: 0.45, 0.05
         on_release:
             app.change_screen("scanRFID_window","left")
+            app.previous="new_donation"
+            
+    Button:
+        text: "Back"
+        font_size: 15
+        background_color: [1, 0, 1, .6]
+        pos_hint: {"x":0.0, "top":1.0}
+        size_hint: 0.1,0.1
+        on_release:
+            app.change_screen(app.previous,"left")
+            app.previous="new_donation"
