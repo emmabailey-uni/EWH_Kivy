@@ -1,7 +1,7 @@
 #:kivy 1.10.0
 
 
-<SelectableButton>:
+<SelectableButton1>:
     # Draw a background to indicate selection
     canvas.before:
         Color:
@@ -10,34 +10,34 @@
             pos: self.pos
             size: self.size
     on_release:
+        root.updateBtn(self.id)
         app.change_screen("equipment_info","left")
 
 
+<AvailableList>:
 
+    available_rv:available_rv
 
-<DefibRV>:
-    rv_layout: layout
-    viewclass:'SelectableButton'
-    SelectableRecycleBoxLayout:
-        id: layout
-        default_size: None, dp(56)
-        default_size_hint: 1, None
-        size_hint_y: None
-        height: self.minimum_height
-        orientation: "vertical"
-
-
-<DefibrillatorList>:
     BoxLayout:
         orientation: "vertical"
         Label:
-            text:'Available Defibrillator Machines'
+            text:'Available Machines'
             font_size: 40
             pos_hint:{"x":0,"top":0}
             size_hint: 1,0.1
             color: 1, 0, 1, 1
 
-        DefibRV:
+        AvailableRV:
+            id: available_rv
+            rv_layout: layout
+            viewclass:'SelectableButton1'
+            SelectableRecycleBoxLayout:
+                id: layout
+                default_size: None, dp(56)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: "vertical"
 
         Button:
             text: 'Previous screen'

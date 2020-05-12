@@ -10,10 +10,9 @@
 #:include kv/request_donation.kv
 #:include kv/available_equipment.kv
 #:include kv/manual_override.kv
-#:include kv/ecg_machine_list.kv
 #:include kv/equipment_info.kv
-#:include kv/defibrillator_list.kv
-#:include kv/steriliser_list.kv
+#:include kv/available_list.kv
+
 
 GridLayout:
     cols:1
@@ -30,15 +29,15 @@ GridLayout:
 
         SplitWindow:
             name:"split_window"
-            id:main_window
+            id:split_window #main_window
 
         MainMenuDonor:
             name:"main_menu_donor"
-            id:main_window
+            id:main_menu_donor #main_window
 
         MainMenuRecipient:
             name:"main_menu_recipient"
-            id:main_window
+            id:main_menu_recipient #main_window
 
         ScanRFIDWindow:
             name:"scanRFID_window"
@@ -68,17 +67,9 @@ GridLayout:
             name: "manual_override"
             id:manual_override
 
-        DefibrillatorList:
-            name:"defibrillator_list"
-            id:defibrillator_list
-
-        SteriliserList:
-            name:"steriliser_list"
-            id:steriliser_list
-
-        ECG_MachineList:
-            name:"ecg_machine_list"
-            id:ecg_machine_list
+        AvailableList:
+            name:"available_list"
+            id:available_list
 
         EquipmentInfo:
             name:"equipment_info"
