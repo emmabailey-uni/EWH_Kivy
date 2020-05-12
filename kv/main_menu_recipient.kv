@@ -16,6 +16,7 @@
             background_color: [1, 0, 1, .6]
             on_release:
                 app.change_screen("profile_window","left")
+                app.previous="main_menu_recipient"
 
         Button:
             id: btn_request
@@ -23,6 +24,7 @@
             background_color: [1, 0, 1, .6]
             on_release:
                 app.change_screen("request_donation","left")
+                app.previous="main_menu_recipient"
 
         Button:
             id: btn_request
@@ -30,6 +32,7 @@
             background_color: [1, 0, 1, .6]
             on_release:
                 app.change_screen("available_equipment","left")
+                app.previous="main_menu_recipient"
 
         Button:
             id: btn_rfid
@@ -37,3 +40,14 @@
             background_color: [1, 0, 1, .6]
             on_release:
                 app.change_screen("scanRFID_window","left")
+                app.previous="main_menu_recipient"
+                
+    Button:
+        text: "Back"
+        font_size: 15
+        background_color: [1, 0, 1, .6]
+        pos_hint: {"x":0.0, "top":1.0}
+        size_hint: 0.1,0.1
+        on_release:
+            app.change_screen(app.previous,"left")
+            app.previous="main_menu_recipient"
