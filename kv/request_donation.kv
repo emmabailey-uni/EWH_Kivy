@@ -9,83 +9,128 @@
     contact:contact
 
 
+
+    Label:
+        text: " Request a Donation"
+        font_size: 40
+        pos_hint:{"x":0.05,"top":1}
+        size_hint:0.9,0.1
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    Label:
+        text: "Type of Machine:"
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.85}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    TextInput:
+        id: typemach
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.8}
+        size_hint:0.9,0.05
+
+    Label:
+        text: "Make and Model: "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.75}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    TextInput:
+        id: makemodel
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.7}
+        size_hint:0.9,0.05
+
+    Label:
+        text:"Requirements: "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.65}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+    TextInput:
+        id: requir
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.6}
+        size_hint:0.9,0.05
+
+    Label:
+        text:"Language: "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.55}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+
+
+    TextInput:
+        id: lang
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.5}
+        size_hint:0.9,0.05
+
+
+
+    Label:
+        text:"Power Convention: "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.45}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+
+
+    TextInput:
+        id: powconv
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.4}
+        size_hint:0.9,0.05
+
+
+
+    Label:
+        text:"Contact Details (Hospital ID): "
+        font_size: 20
+        pos_hint:{"x":0.05,"top":0.35}
+        size_hint:0.9,0.0375
+        multiline: True
+        italic: True
+        color: 1, 0, 1, 1
+
+
+
+    TextInput:
+        id: contact
+        multiline: False
+        pos_hint:{"x":0.05,"top":0.3}
+        size_hint:0.9,0.05
+
+
+
     Button:
-        text: "Back"
-        font_size: 15
+        text: "Request"
+        font_size: 40
         background_color: [1, 0, 1, .6]
-        pos_hint: {"x":0.0, "top":1.0}
-        size_hint: 0.1,0.1
-        on_release:
-            app.change_screen(app.previous,"right")
-            app.previous="request_donation"
-
-    GridLayout:
-        cols:1
-
-
-
-        GridLayout:
-            cols:2
-
-
-            Label:
-                text: "Type of Machine:"
-                color: 1, 0, 1, 1
-
-            TextInput:
-                id: typemach
-                multiline: False
-
-            Label:
-                text: "Make and Model: "
-                color: 1, 0, 1, 1
-
-            TextInput:
-                id: makemodel
-                multiline: False
-
-            Label:
-                text:"Requirements: "
-                color: 1, 0, 1, 1
-
-            TextInput:
-                id: requir
-                multiline: False
-
-            Label:
-                text:"Language: "
-                color: 1, 0, 1, 1
-
-            TextInput:
-                id: lang
-                multiline: False
-
-            Label:
-                text:"Power Convention: "
-                color: 1, 0, 1, 1
-
-            TextInput:
-                id: powconv
-                multiline: False
-
-            Label:
-                text:"Contact Details (Hospital ID): "
-                color: 1, 0, 1, 1
-
-            TextInput:
-                id: contact
-                multiline: False
-
-
-
-        Button:
-            text: "Request"
-            font_size: 40
-            background_color: [1, 0, 1, .6]
-            on_press:
-                root.request()
-                app.change_screen("main_menu_recipient","right")
-                app.previous="request_donation"
+        pos_hint: {"x": 0.0, "bottom":1}
+        size_hint: 1,0.125
+        italic: True
+        on_press:
+            root.request()
+            app.change_screen("main_menu_recipient","right")
             #on_release:
-              #app.root.current = "second"
-              #app.change_screen("split_window","right")
+            #app.root.current = "second"
+            app.change_screen("split_window","right")
